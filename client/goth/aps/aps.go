@@ -30,7 +30,7 @@ type Provider struct {
 	prompt      oauth2.AuthCodeOption
 }
 
-// New - Please fill the code
+// New - Based on gplus provider
 func New(clientKey, secret, callbackURL string, scopes ...string) *Provider {
 	p := &Provider{
 		ClientKey:   clientKey,
@@ -41,7 +41,7 @@ func New(clientKey, secret, callbackURL string, scopes ...string) *Provider {
 	return p
 }
 
-// FetchUser - Please fill the code
+// FetchUser - Based on gplus provider
 func (p *Provider) FetchUser(session goth.Session) (goth.User, error) {
 	sess := session.(*Session)
 	user := goth.User{
@@ -74,7 +74,7 @@ func (p *Provider) FetchUser(session goth.Session) (goth.User, error) {
 	return user, err
 }
 
-// RefreshToken - Please fill the code
+// RefreshToken - Based on gplus provider
 func (p *Provider) RefreshToken(refreshToken string) (*oauth2.Token, error) {
 	token := &oauth2.Token{RefreshToken: refreshToken}
 	//Deprecated oauth2.Nocontext
@@ -87,7 +87,7 @@ func (p *Provider) RefreshToken(refreshToken string) (*oauth2.Token, error) {
 	return newToken, err
 }
 
-// RefreshTokenAvailable - Please fill the code
+// RefreshTokenAvailable - Based on gplus provider
 func (p *Provider) RefreshTokenAvailable() bool {
 	return true
 }
@@ -100,7 +100,7 @@ func (p *Provider) Name() string {
 // Debug is a no-op for the APS package.
 func (p *Provider) Debug(debug bool) {}
 
-// BeginAuth - Please fill the code
+// BeginAuth - Based on gplus provider
 func (p *Provider) BeginAuth(state string) (goth.Session, error) {
 	var opts []oauth2.AuthCodeOption
 	if p.prompt != nil {
@@ -113,7 +113,7 @@ func (p *Provider) BeginAuth(state string) (goth.Session, error) {
 	return session, nil
 }
 
-// SetPrompt - Please fill the code
+// SetPrompt - Based on gplus provider
 func (p *Provider) SetPrompt(prompt ...string) {
 	if len(prompt) == 0 {
 		return
@@ -121,6 +121,7 @@ func (p *Provider) SetPrompt(prompt ...string) {
 	p.prompt = oauth2.SetAuthURLParam("prompt", strings.Join(prompt, " "))
 }
 
+//Based on gplusProvider
 func newConfig(provider *Provider, scopes []string) *oauth2.Config {
 	c := &oauth2.Config{
 		ClientID:     provider.ClientKey,
@@ -143,6 +144,7 @@ func newConfig(provider *Provider, scopes []string) *oauth2.Config {
 	return c
 }
 
+//Based on gplus provider
 func userFromReader(reader io.Reader, user *goth.User) error {
 	u := struct {
 		ID       string `json:"id"`

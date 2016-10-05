@@ -1,6 +1,9 @@
 # Backend Developer Test
 
 ## Solution
+Go 1.7
+LiteIDE X (X30.2)
+
 To get the application:
 ``` bash
 $ go get github.com/jica/oauth
@@ -19,6 +22,7 @@ $ go run main.go
 
 Now you can access using aps provider using http://localhost:3000/auth/aps
 
+###Tests
 To execute the tests it is necesary to get gock (used to create server mock):
 
 (TODO: Add to vendor using godep)

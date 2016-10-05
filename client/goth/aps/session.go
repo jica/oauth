@@ -31,6 +31,7 @@ func (s Session) GetAuthURL() (string, error) {
 // Authorize - Based on gplus provider
 func (s *Session) Authorize(provider goth.Provider, params goth.Params) (string, error) {
 	p := provider.(*Provider)
+	//To fix that OAuth2 server does not support the HTTP Basic authentication scheme to authenticate with the authorization server
 	oauth2.RegisterBrokenAuthHeaderProvider(tokenURL)
 	//Deprecated oauth2.NoContext
 	//token, err := p.config.Exchange(oauth2.NoContext, params.Get("code"))
