@@ -11,6 +11,12 @@ To run the client:
 $ cd $GOPATH/src/github.com/jica/oauth/client
 $ go run main.go
 ```
+To run the server:
+``` bash
+$ cd $GOPATH/src/github.com/jica/oauth/server
+$ go run main.go
+```
+
 Now you can access using aps provider using http://localhost:3000/auth/aps
 
 To execute the tests it is necesary to get gock (used to create server mock):
@@ -18,7 +24,7 @@ To execute the tests it is necesary to get gock (used to create server mock):
 (TODO: Add to vendor using godep)
 ``` bash
 $ go get gopkg.in/h2non/gock.v1
-$ go test github.com/jica/oauth/goth/aps
+$ go test github.com/jica/oauth/client/goth/aps -v
 ```
 
 
