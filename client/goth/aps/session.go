@@ -7,6 +7,9 @@ import (
 	"time"
 
 	"github.com/markbates/goth"
+
+	"golang.org/x/net/context"
+	"golang.org/x/oauth2"
 )
 
 // Session stores data during the auth process with APS.
@@ -25,9 +28,26 @@ func (s Session) GetAuthURL() (string, error) {
 	return s.AuthURL, nil
 }
 
-// Authorize - Please fill the code
+// Authorize - Based on gplus provider
 func (s *Session) Authorize(provider goth.Provider, params goth.Params) (string, error) {
-	return "", nil
+	p := provider.(*Provider)
+	oauth2.RegisterBrokenAuthHeaderProvider(tokenURL)
+	//Deprecated oauth2.NoContext
+	//token, err := p.config.Exchange(oauth2.NoContext, params.Get("code"))
+	token, err := p.config.Exchange(context.TODO(), params.Get("code"))
+
+	if err != nil {
+		return "", err
+	}
+
+	if !token.Valid() {
+		return "", errors.New("Invalid token received from provider")
+	}
+
+	s.AccessToken = token.AccessToken
+	s.RefreshToken = token.RefreshToken
+	s.ExpiresAt = token.Expiry
+	return token.AccessToken, err
 }
 
 // Marshal the session into a string
