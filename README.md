@@ -13,7 +13,8 @@ $ go run main.go
 ```
 Now you can access using aps provider using http://localhost:3000/auth/aps
 
-To execute the tests it is necesary to get gock:
+To execute the tests it is necesary to get gock (used to create server mock):
+
 (TODO: Add to vendor using godep)
 ``` bash
 $ go get gopkg.in/h2non/gock.v1
