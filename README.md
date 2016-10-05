@@ -1,5 +1,26 @@
 # Backend Developer Test
 
+## Solution
+To get the application:
+``` bash
+$ go get github.com/jica/oauth
+```
+
+To run the client:
+``` bash
+$ cd $GOPATH/src/github.com/jica/oauth/client
+$ go run main.go
+```
+Now you can access using aps provider using http://localhost:3000/auth/aps
+
+To execute the tests it is necesary to get gock:
+(TODO: Add to vendor using godep)
+``` bash
+$ go get gopkg.in/h2non/gock.v1
+$ go test github.com/jica/oauth/goth/aps
+```
+
+
 ## Introduction
 The intention of the exercise is to test your ability to resolve a complex problem we could find in the real world. We are asking you to create a [Goth](https://github.com/markbates/goth/) provider for a mock oauth2 server that we have created. We are giving you both the oauth2 server and a skeleton for the goauth provider.
 
