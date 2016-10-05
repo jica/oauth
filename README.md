@@ -1,8 +1,10 @@
 # Backend Developer Test
 
 ## Solution
-Go 1.7
-LiteIDE X (X30.2)
+For the development of the solution, I have used:
+* Go 1.7
+* LiteIDE X (X30.2)
+
 
 To get the application:
 ``` bash
